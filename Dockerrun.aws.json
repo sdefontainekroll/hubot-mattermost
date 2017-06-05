@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "redis",
+            "image": "redis:latest",
+            "essential": true,
+            "memory": 256,
+            "mountPoints": [
+                {
+                    "sourceVolume": "awseb-logs-redis",
+                    "containerPath": "/var/log/redis"
+                }
+            ]
+        },
+        {
+            "name": "hubot",
+            "image": "lessa/hubot-mattermost",
+            "links": [
+                "redis"
+            ],
+            "essential": true,
+            "memory": 256,
+            "mountPoints": [
+                {
+                    "sourceVolume": "awseb-logs-hubot",
+                    "containerPath": "/var/log/hubot"
+                }
+            ],
+            "command": [
+                "./bin/hubot --adapter mattermost"
+            ]
+        }
+        
+    ]
+}
