@@ -15,20 +15,26 @@
         },
         {
             "name": "hubot",
-            "image": "lessa/hubot-mattermost",
+            "image": "sdefontainekroll/hubot-mattermost6",
             "links": [
                 "redis"
             ],
             "essential": true,
             "memory": 256,
-            "mountPoints": [
+          "mountPoints": [
+            {
+              "sourceVolume": "awseb-logs-hubot",
+              "containerPath": "/var/log/hubot"
+            }
+          ],
+          "portMappings": [
                 {
-                    "sourceVolume": "awseb-logs-hubot",
-                    "containerPath": "/var/log/hubot"
+                    "containerPort": 80,
+                    "hostPort": 80
                 }
             ],
             "command": [
-                "./bin/hubot --adapter mattermost"
+                "./run_hubot.sh"
             ]
         }
         

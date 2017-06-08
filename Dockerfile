@@ -26,3 +26,12 @@ ADD run_hubot.sh /home/hubot/hubot/run_hubot.sh
 ADD package.json /home/hubot/hubot/package.json 
 ADD external-scripts.json /home/hubot/hubot/external-scripts.json 
 RUN npm install
+
+# listen endpoint
+ENV MATTERMOST_ENDPOINT /hubot/incoming
+# your mattermost token
+ENV MATTERMOST_TOKEN rgoo5jca4i8n5e33xgq31cmsgr
+# your mattermost income url
+ENV MATTERMOST_INCOME_URL http://custom-env-2.xa28qfpejx.us-east-2.elasticbeanstalk.com/hooks/xzq9r45s43dj5yb4p9eh69oybw
+
+EXPOSE 80
